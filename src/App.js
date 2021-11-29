@@ -1,5 +1,9 @@
 import './App.css';
-import { BrowserRouter as Switch, Route } from 'react-router-dom';
+import {
+	BrowserRouter,
+	BrowserRouter as Switch,
+	Route,
+} from 'react-router-dom';
 import { AppContext } from './AppContext';
 import React, { useState } from 'react';
 import Home from './pages/home';
@@ -15,25 +19,25 @@ function App() {
 	});
 	return (
 		<AppContext.Provider value={{ user, setUser }}>
-			<BrowserRouter>
-				<Switch>
-					<Route path="/useradmin">
-						<UserAdmin />
-					</Route>
-					<Route path="/signup">
-						<SignUp />
-					</Route>
-					<Route path="/login">
-						<Login />
-					</Route>
-					<Route path="/userprofile">
-						<UserProfile />
-					</Route>
-					<Route path="/">
-						<Home />
-					</Route>
-				</Switch>
-			</BrowserRouter>
+			<BrowserRouter />
+			<Switch>
+				<Route path="/useradmin">
+					<UserAdmin />
+				</Route>
+				<Route path="/signup">
+					<SignUp />
+				</Route>
+				<Route path="/login">
+					<Login />
+				</Route>
+				<Route path="/userprofile">
+					<UserProfile />
+				</Route>
+				<Route path="/">
+					<Home />
+				</Route>
+			</Switch>
+			<BrowserRouter />
 		</AppContext.Provider>
 	);
 }
