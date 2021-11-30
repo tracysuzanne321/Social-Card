@@ -1,63 +1,35 @@
-import React from "react";
+import { NavLink } from 'react-router-dom';
+import logo from '../images/Logo.svg';
 
-exports.Navbar = () => {
-  return (
-    <div>
-      <header class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              class="w-10 h-10 text-white p-2 bg-green-500 rounded-full"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <span class="ml-3 text-xl">SocialCard</span>
-          </a>
-          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a class="mr-5 hover:text-gray-900">First Link</a>
-            <a class="mr-5 hover:text-gray-900">Second Link</a>
-            <a class="mr-5 hover:text-gray-900">Third Link</a>
-            <a class="mr-5 hover:text-gray-900">Fourth Link</a>
-          </nav>
-          <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-            {" "}
-            Log In
-            <svg
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              class="w-4 h-4 ml-1"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
-          <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-            {" "}
-            Sign up
-            <svg
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              class="w-4 h-4 ml-1"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-      </header>
-    </div>
-  );
+const Navbar = () => {
+	return (
+		<nav className="flex items-center py-8 body-font">
+			<ul className="flex flex-grow items-center ml-20 mr-20">
+				<img src={logo} alt="" />
+				<li className="body-font ml-3 mt-1 text-gray-900 text-2xl font-medium">
+					<NavLink exact to="/" className="hover:text-green-500">
+						SocialCard.
+					</NavLink>
+				</li>
+				<>
+					<li className="ml-auto mr-12 w-16">
+						<NavLink
+							to="/login"
+							className="bg-gray-100 hover:bg-gray-200 px-7 py-2.5 rounded-lg">
+							Login
+						</NavLink>
+					</li>
+					<li className=" mr-7">
+						<NavLink
+							to="/signup"
+							className="bg-gray-100 hover:bg-gray-200 px-5 py-2.5 rounded-lg">
+							Sign Up
+						</NavLink>
+					</li>
+				</>
+			</ul>
+		</nav>
+	);
 };
+
+export default Navbar;
