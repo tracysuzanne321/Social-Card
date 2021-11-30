@@ -1,5 +1,11 @@
+import UserCard from '../components/usercard';
+
 const UserProfile = () => {
-	return <div></div>;
+	return (
+		<div>
+			<UserCard />
+		</div>
+	);
 };
 
 export default UserProfile;
