@@ -8,6 +8,7 @@ import SignUp from './pages/signup';
 import UserAdmin from './pages/useradmin';
 import UserProfile from './pages/userprofile';
 import Navbar from './components/nav';
+import Footer from './components/footer';
 
 function App() {
 	const [user, setUser] = useState({
@@ -35,6 +36,7 @@ function App() {
 						<Home />
 					</Route>
 				</Switch>
+				<Footer />
 			</BrowserRouter>
 		</AppContext.Provider>
 	);
