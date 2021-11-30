@@ -28,7 +28,7 @@ export const SignUpForm = () => {
 				id="email"
 				autoFocus={true}
 				autoComplete="on"
-				className="border border-solid mb-2 px-1 py-1.5 rounded"
+				className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 				placeholder="Email"
 				type="text"
 				onChange={(e) => setEmail(e.target.value)}
@@ -37,14 +37,14 @@ export const SignUpForm = () => {
 				id="username"
 				autoFocus={true}
 				autoComplete="on"
-				className="border mb-2 px-1 py-1.5 rounded"
+				className="border mb-2 px-1 py-1.5 rounded outline-none"
 				placeholder="Username"
 				type="text"
 				onChange={(e) => setUsername(e.target.value)}
 			/>
 			<input
 				id="password"
-				className="border border-solid mb-2 px-1 py-1.5 rounded"
+				className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 				placeholder="Password"
 				type="password"
 				onChange={(e) => setPassword(e.target.value)}

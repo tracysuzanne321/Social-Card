@@ -50,10 +50,15 @@ export const LogInForm = () => {
 				Login
 			</button>
 			<div className="font-light mb-1 mt-3 text-center text-gray-400">
-				Not a member? Sign up now
+				Not a member?
+				<a className="underline ml-2" href="./signup">
+					Sign up now
+				</a>
 			</div>
 			<div className="font-light text-center text-gray-400">
-				Forgotten Password?
+				<a className="underline" href="./useradmin">
+					Forgotten Password
+				</a>
 			</div>
 		</form>
 	);
