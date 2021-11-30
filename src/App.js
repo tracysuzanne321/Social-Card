@@ -19,23 +19,25 @@ function App() {
 		<AppContext.Provider value={{ user, setUser }}>
 			<BrowserRouter>
 				<Navbar />
-				<Switch>
-					<Route path="/useradmin">
-						<UserAdmin />
-					</Route>
-					<Route path="/signup">
-						<SignUp />
-					</Route>
-					<Route path="/login">
-						<Login />
-					</Route>
-					<Route path="/userprofile">
-						<UserProfile />
-					</Route>
-					<Route path="/">
-						<Home />
-					</Route>
-				</Switch>
+				<div className="flex flex-col flex-1">
+					<Switch>
+						<Route path="/useradmin">
+							<UserAdmin />
+						</Route>
+						<Route path="/signup">
+							<SignUp />
+						</Route>
+						<Route path="/login">
+							<Login />
+						</Route>
+						<Route path="/userprofile">
+							<UserProfile />
+						</Route>
+						<Route path="/">
+							<Home />
+						</Route>
+					</Switch>
+				</div>
 				<Footer />
 			</BrowserRouter>
 		</AppContext.Provider>
