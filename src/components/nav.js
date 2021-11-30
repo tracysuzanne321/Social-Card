@@ -3,10 +3,10 @@ import logo from '../images/Logo.svg';
 
 const Navbar = () => {
 	return (
-		<nav className="flex items-center py-8">
+		<nav className="flex items-center py-8 body-font">
 			<ul className="flex flex-grow items-center ml-20 mr-20">
 				<img src={logo} alt="" />
-				<li className="body-font ml-3 mt-1 text-gray-900 text-2xl">
+				<li className="body-font ml-3 mt-1 text-gray-900 text-2xl font-medium">
 					<NavLink exact to="/" className="hover:text-green-500">
 						SocialCard.
 					</NavLink>
