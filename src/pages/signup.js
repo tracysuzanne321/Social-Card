@@ -1,11 +1,28 @@
 import { SignUpForm } from '../components/signupform';
+import Image from '../images/unsplash_VieM9BdZKFo.svg';
 
 const SignUp = () => {
 	return (
-		<div className="flex ">
-			<div className="bg-gray-100 drop-shadow-2xl shadow-2xl font-medium max-w-md ml-20 mt-16 mx-2 p-8 pb-10 rounded-lg w-full">
-				<h1 className="mb-4 text-xl font-medium">Sign Up</h1>
-				<SignUpForm />
+		<div className="flex flex-col md:flex-row mt-12 w-full">
+			<div className="md:w-5/12">
+				<div className="bg-gray-100 drop-shadow-2xl font-medium m-4 mx-8 p-8 pb-10 rounded-lg shadow-2xl">
+					<h1 className="mb-4 text-xl font-medium">Sign Up.</h1>
+					<SignUpForm />
+				</div>
+			</div>
+			<div className="flex flex-col items-end justify-center md:mt-0 md:w-7/12 mt-8 pb-32 relative sm:pb-0">
+				<div className="absolute left-0 lg:pl-8 mt-8 px-4 sm:pr-0 sm:text-right sm:w-4/6 top-0">
+					<h1 className="font-bold leading-snug mb-10 text-4xl">
+						Slow-carb next level shoindcgoitch ethical authentic.
+					</h1>
+					<h2>
+						Poke slow-carb mixtape knausgaard, typewriter street art gentrify
+						hammock starladder roathse. Craies vegan tousled etsy austin.
+					</h2>
+				</div>
+				<div>
+					<img className="" src={Image} alt="" />
+				</div>
 			</div>
 		</div>
 	);
