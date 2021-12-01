@@ -10,11 +10,14 @@ const MobileNav = () => {
 	return (
 		<>
 			<div
-				className={`bg-black duration-500 transition-opacity fixed top-0 left-0 w-screen h-screen sm:hidden ${
+				onClick={() => {
+					setOpen(false);
+				}}
+				className={`bg-black z-50 duration-500 transition-opacity fixed top-0 left-0 w-screen h-screen sm:hidden ${
 					open ? 'bg-opacity-50' : 'pointer-events-none bg-opacity-0'
 				}`}></div>
 			<div
-				className={`bg-white sm:hidden duration-500 fixed flex flex-col font-medium h-screen right-0 text-2xl text-center top-0 transform transition-transform ${
+				className={`bg-white z-50 sm:hidden duration-500 fixed flex flex-col font-medium h-screen right-0 text-2xl text-center top-0 transform transition-transform ${
 					open ? '' : 'translate-x-full'
 				} w-2/3`}>
 				<button
@@ -25,11 +28,21 @@ const MobileNav = () => {
 					<img src={close} />
 				</button>
 
-				<NavLink to="/login" className="py-4">
+				<NavLink
+					onClick={() => {
+						setOpen(false);
+					}}
+					to="/login"
+					className="py-4">
 					Login
 				</NavLink>
 
-				<NavLink to="/signup" className="py-4">
+				<NavLink
+					onClick={() => {
+						setOpen(false);
+					}}
+					to="/signup"
+					className="py-4">
 					Sign Up
 				</NavLink>
 			</div>

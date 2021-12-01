@@ -36,7 +36,7 @@ const Home = () => {
 							Donec tempor, lorem vitae vestibulum auctor, lectus velit
 							ultricies metus, vel ultrices massa sapien eget ipsum.
 						</p>
-						<div className="flex flex-row">
+						<div className="flex flex-row mb-4">
 							<img className="mr-2" src={fBicon} alt="" />
 							<img className="mr-2" src={iGicon} alt="" />
 							<img className="mr-2" src={Ticon} alt="" />
