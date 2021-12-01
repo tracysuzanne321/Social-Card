@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { AppContext } from '../AppContext';
-import { createUser } from '../utils';
+import { createUser } from '../utils/index';
 import { useHistory } from 'react-router';
 
 export const SignUpForm = () => {
@@ -17,9 +17,9 @@ export const SignUpForm = () => {
 			onSubmit={async (e) => {
 				e.preventDefault();
 				try {
-					const userData = await createUser(username, email, password);
+					const userData = await createUser(username, email, password, setUser);
 					setUser(userData);
-					history.push('/');
+					history.push('/useradmin');
 				} catch (e) {
 					setValid(false);
 				}

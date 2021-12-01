@@ -1,7 +1,8 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { AppContext } from './AppContext';
-import React, { useState } from 'react';
+import { tokenFetch } from './utils';
+import React, { useState, useEffect } from 'react';
 import Home from './pages/home';
 import Login from './pages/login';
 import SignUp from './pages/signup';
@@ -15,6 +16,11 @@ function App() {
 		username: '',
 		email: '',
 	});
+
+	useEffect(() => {
+		tokenFetch(setUser);
+	}, []);
+
 	return (
 		<AppContext.Provider value={{ user, setUser }}>
 			<BrowserRouter>

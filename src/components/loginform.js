@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { AppContext } from '../AppContext';
-import { login } from '../utils';
+import { login } from '../utils/index';
 import { useHistory } from 'react-router';
 
 export const LogInForm = () => {
@@ -18,7 +18,7 @@ export const LogInForm = () => {
 				try {
 					const userData = await login(email, password);
 					setUser(userData);
-					history.push('/');
+					history.push('/useradmin');
 				} catch (e) {
 					setValid(false);
 				}
