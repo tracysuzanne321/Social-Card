@@ -1,5 +1,7 @@
+import UserAdminForm from '../components/useradminform';
+
 const UserAdmin = () => {
-	return <div>User admin</div>;
+	return <UserAdminForm />;
 };
 
 export default UserAdmin;
