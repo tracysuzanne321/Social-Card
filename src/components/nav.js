@@ -109,7 +109,7 @@ const Navbar = () => {
 										username: '',
 										email: '',
 									});
-									history.go('/');
+									history.push('/');
 								}}
 								className="bg-gray-100 hover:bg-gray-200 px-5 py-2.5 rounded-lg">
 								Log Out

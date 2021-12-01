@@ -3,6 +3,7 @@ import fBicon from '../images/Facebook_black.svg';
 import iGicon from '../images/Instagram_black.svg';
 import Ticon from '../images/Twitter_black.svg';
 import Ghicon from '../images/Github_black.svg';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	return (
@@ -16,9 +17,11 @@ const Home = () => {
 						Poke slow-carb mixtape knausgaard, typewriter street art gentrify
 						hammock starladder roathse. Craies vegan tousled etsy austin.
 					</p>
-					<button className="bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
+					<Link
+						to="/signup"
+						className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
 						Sign Up
-					</button>
+					</Link>
 				</div>
 
 				<div className="flex md:flex-row flex-col lg:ml-10 max-w-2xl mb-10 rounded-2xl shadow-2xl">

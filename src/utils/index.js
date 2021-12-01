@@ -79,9 +79,5 @@ export const login = async (email, password) => {
 };
 
 export const logOut = async () => {
-	const response = await fetch(`${apiUrl}/token`, {
-		method: 'GET',
-	});
-	const data = await response.json();
-	localStorage.removeItem('MyToken', data.token);
+	localStorage.removeItem('MyToken');
 };
