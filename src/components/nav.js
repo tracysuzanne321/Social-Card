@@ -74,7 +74,7 @@ const Navbar = () => {
 					</NavLink>
 				</li>
 				<MobileNav />
-				{user.username === '' ? (
+				{user?.username === '' ? (
 					<div className="ml-auto hidden sm:flex">
 						<li className="ml-auto mr-12 w-16">
 							<NavLink
