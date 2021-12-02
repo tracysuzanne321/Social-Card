@@ -76,7 +76,7 @@ const UserAdminForm = () => {
 								type="text"
 								onChange={(e) => setJob(e.target.value)}
 							/>
-							<input
+							<textarea
 								id="bio"
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 								placeholder="Bio"
