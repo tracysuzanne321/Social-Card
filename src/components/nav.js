@@ -28,7 +28,7 @@ const MobileNav = () => {
 						setOpen(false);
 					}}
 					className="h-8 ml-5 mt-5 w-8">
-					<img src={close} />
+					<img alt="Close" src={close} />
 				</button>
 
 				<NavLink
@@ -55,7 +55,7 @@ const MobileNav = () => {
 					setOpen(true);
 				}}
 				className="ml-auto w-8 h-8 sm:hidden">
-				<img src={burger} />
+				<img alt="Menu" src={burger} />
 			</button>
 		</>
 	);
@@ -67,7 +67,7 @@ const Navbar = () => {
 	return (
 		<nav className="flex items-center py-8 body-font">
 			<ul className="flex flex-grow items-center px-10 sm:px-20">
-				<img src={logo} alt="" />
+				<img alt="Logo" src={logo} />
 				<li className="body-font ml-3 mt-1 text-gray-900 text-2xl font-medium">
 					<NavLink exact to="/" className="hover:text-green-500">
 						SocialCard.
@@ -95,7 +95,7 @@ const Navbar = () => {
 					<div className="ml-auto hidden sm:flex">
 						<li className="ml-auto mr-12 w-16">
 							<NavLink
-								to="/userprofile"
+								to="/useradmin"
 								className="bg-gray-100 hover:bg-gray-200 px-7 py-2.5 rounded-lg">
 								Settings
 							</NavLink>

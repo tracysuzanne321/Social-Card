@@ -18,7 +18,7 @@ export const LogInForm = () => {
 				try {
 					const userData = await login(email, password);
 					setUser(userData);
-					history.push('/useradmin');
+					history.push('/userprofile');
 				} catch (e) {
 					setValid(false);
 				}

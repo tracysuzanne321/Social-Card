@@ -64,18 +64,7 @@ const UserAdminForm = () => {
 								/>
 							</button>
 						</div>
-						<form
-							className="flex flex-col p-4 pt-10 w-2/3 ml-4"
-							onSubmit={async (e) => {
-								e.preventDefault();
-								try {
-									const userData = await updateCard(fullName, jobTitle, bio);
-									setCard(userData);
-									history.push('/');
-								} catch (e) {
-									console.log(e);
-								}
-							}}>
+						<form className="flex flex-col p-4 pt-10 w-2/3 ml-4">
 							<input
 								id="fullName"
 								maxLength="50"
@@ -112,9 +101,19 @@ const UserAdminForm = () => {
 						</form>
 					</div>
 					<button
+						onClick={async (e) => {
+							console.log('Clicked');
+							try {
+								const cardDetails = { fullName, jobTitle, bio };
+								const userData = await updateCard(cardDetails);
+								setCard(userData);
+								history.push('/');
+							} catch (e) {
+								console.log(e);
+							}
+						}}
 						type="submit"
-						className="bg-green-500 hover:bg-green-600 p-3 rounded text-white"
-						onClick={(uploadImage, setCard)}>
+						className="bg-green-500 hover:bg-green-600 p-3 rounded text-white">
 						Save Profile
 					</button>
 				</div>
