@@ -5,10 +5,10 @@ import ModalLink from './modal';
 import { AppContext } from '../AppContext';
 import { updateCard } from '../utils';
 
-const UserAdminForm = () => {
-	const [fullName, setFullName] = useState('');
-	const [jobTitle, setJobTitle] = useState('');
-	const [bio, setBio] = useState('');
+const UserAdminForm = (fullName, jobTitle, bio) => {
+	const [Name, setName] = useState('');
+	const [job, setJob] = useState('');
+	const [about, setAbout] = useState('');
 	const [userImage, setUserImage] = useState('');
 	const { setCard } = useContext(AppContext);
 	const history = useHistory();
@@ -64,7 +64,19 @@ const UserAdminForm = () => {
 								/>
 							</button>
 						</div>
-						<form className="flex flex-col p-4 pt-10 w-2/3 ml-4">
+						<form
+							className="flex flex-col p-4 pt-10 w-2/3 ml-4"
+							onSubmit={async (e) => {
+								e.preventDefault();
+								try {
+									const userData = await updateCard(fullName, jobTitle, bio);
+									setCard(userData);
+									uploadImage();
+									history.push('/');
+								} catch (error) {
+									console.log(error);
+								}
+							}}>
 							<input
 								id="fullName"
 								maxLength="50"
@@ -73,8 +85,8 @@ const UserAdminForm = () => {
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 								placeholder="Full Name"
 								type="text"
-								value={fullName}
-								onChange={(e) => setFullName(e.target.value)}
+								value={Name}
+								onChange={(e) => setName(e.target.value)}
 							/>
 							<input
 								id="job"
@@ -82,8 +94,8 @@ const UserAdminForm = () => {
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 								placeholder="Job Type"
 								type="text"
-								value={jobTitle}
-								onChange={(e) => setJobTitle(e.target.value)}
+								value={job}
+								onChange={(e) => setJob(e.target.value)}
 							/>
 							<textarea
 								maxLength="250"
@@ -91,8 +103,8 @@ const UserAdminForm = () => {
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none resize-none"
 								placeholder="Bio"
 								type="text"
-								value={bio}
-								onChange={(e) => setBio(e.target.value)}
+								value={about}
+								onChange={(e) => setAbout(e.target.value)}
 							/>
 							<div className="flex mb-4 items-center">
 								<ModalLink />
@@ -101,17 +113,6 @@ const UserAdminForm = () => {
 						</form>
 					</div>
 					<button
-						onClick={async (e) => {
-							console.log('Clicked');
-							try {
-								const cardDetails = { fullName, jobTitle, bio };
-								const userData = await updateCard(cardDetails);
-								setCard(userData);
-								history.push('/');
-							} catch (e) {
-								console.log(e);
-							}
-						}}
 						type="submit"
 						className="bg-green-500 hover:bg-green-600 p-3 rounded text-white">
 						Save Profile

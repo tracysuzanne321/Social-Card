@@ -6,7 +6,7 @@ import ModalFooter from '@material-tailwind/react/ModalFooter';
 import Button from '@material-tailwind/react/Button';
 import { IoMdAddCircle } from 'react-icons/io';
 
-export default function ModalLink(link) {
+export default function ModalLink() {
 	const [showModal, setShowModal] = useState(false);
 	const [setLogo] = useState();
 	const [setUrl] = useState();
