@@ -36,6 +36,42 @@ export const createUser = async (username, email, password, setUser) => {
 		throw error;
 	}
 };
+export const updateCard = async (
+	setCard,
+	jobTitle,
+	profileImageUrl,
+	bio,
+	fullName,
+	socialLinks,
+) => {
+	try {
+		const response = await fetch(`${apiUrl}/updateCard`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				fullName: fullName,
+				jobTitle: jobTitle,
+				bio: bio,
+				socialLinks: socialLinks,
+				profileImageUrl: profileImageUrl,
+			}),
+		});
+		const data = await response.json();
+		setCard(data.user);
+		localStorage.setItem('MyToken', data.token);
+		return {
+			fullName: data.set.fullName,
+			jobTitle: data.set.jobTitle,
+			bio: data.set.bio,
+			socialLinks: data.set.socialLinks,
+			profileImageUrl: data.set.profileImageUrl,
+		};
+	} catch (error) {
+		throw error;
+	}
+};
 
 export const deleteUser = async () => {
 	try {

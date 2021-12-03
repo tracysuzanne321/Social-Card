@@ -6,4 +6,12 @@ export const AppContext = createContext({
 		username: '',
 		email: '',
 	},
+	setCard: () => {},
+	card: {
+		fullName: '',
+		jobTitle: '',
+		bio: '',
+		socialLinks: '',
+		profileImageUrl: '',
+	},
 });
