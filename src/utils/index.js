@@ -36,19 +36,15 @@ export const createUser = async (username, email, password, setUser) => {
 		throw error;
 	}
 };
-export const updateCard = async (
-	setCard,
-	jobTitle,
-	profileImageUrl,
-	bio,
-	fullName,
-	socialLinks,
-) => {
+export const updateCard = async (cardDetails) => {
 	try {
+		const { fullName, jobTitle, bio, socialLinks, profileImageUrl } =
+			cardDetails;
 		const response = await fetch(`${apiUrl}/updateCard`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
 			},
 			body: JSON.stringify({
 				fullName: fullName,
@@ -59,15 +55,8 @@ export const updateCard = async (
 			}),
 		});
 		const data = await response.json();
-		setCard(data.user);
 		localStorage.setItem('MyToken', data.token);
-		return {
-			fullName: data.set.fullName,
-			jobTitle: data.set.jobTitle,
-			bio: data.set.bio,
-			socialLinks: data.set.socialLinks,
-			profileImageUrl: data.set.profileImageUrl,
-		};
+		return cardDetails;
 	} catch (error) {
 		throw error;
 	}

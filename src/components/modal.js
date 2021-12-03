@@ -8,17 +8,12 @@ import { IoMdAddCircle } from 'react-icons/io';
 
 export default function ModalLink(link) {
 	const [showModal, setShowModal] = useState(false);
-	const [logo, setLogo] = useState();
-	const [url, setUrl] = useState();
-	const [isPending, setIsPending] = useState(false);
+	const [setLogo] = useState();
+	const [setUrl] = useState();
+	const [setIsPending] = useState(false);
 
 	const setShowModalCode = (e) => {
 		setShowModal(e);
-	};
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		setIsPending(true);
 	};
 
 	return (
@@ -37,7 +32,7 @@ export default function ModalLink(link) {
 				active={showModal}
 				toggler={() => setShowModal(false)}>
 				<ModalHeader toggler={() => setShowModal(false)}>
-					Add Social Links
+					Add Social Links.
 				</ModalHeader>
 				<ModalBody>
 					<div className=" flex flex-col text-base leading-relaxed text-gray-600 font-normal">
@@ -60,6 +55,7 @@ export default function ModalLink(link) {
 				</ModalBody>
 				<ModalFooter>
 					<Button
+						className="font-pop"
 						color="black"
 						buttonType="link"
 						onClick={(e) => setShowModalCode(false)}
@@ -68,7 +64,7 @@ export default function ModalLink(link) {
 					</Button>
 
 					<Button
-						onClick={handleSubmit}
+						className="font-pop"
 						color="green"
 						onClick={(e) => setShowModalCode(false)}
 						ripple="light">
