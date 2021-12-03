@@ -5,8 +5,8 @@ import ModalLink from './modal';
 import { AppContext } from '../AppContext';
 import { updateCard } from '../utils';
 
-const UserAdminForm = (fullName, jobTitle, bio) => {
-	const [Name, setName] = useState('');
+const UserAdminForm = () => {
+	const [name, setName] = useState('');
 	const [job, setJob] = useState('');
 	const [about, setAbout] = useState('');
 	const [userImage, setUserImage] = useState('');
@@ -64,19 +64,7 @@ const UserAdminForm = (fullName, jobTitle, bio) => {
 								/>
 							</button>
 						</div>
-						<form
-							className="flex flex-col p-4 pt-10 w-2/3 ml-4"
-							onSubmit={async (e) => {
-								e.preventDefault();
-								try {
-									const userData = await updateCard(fullName, jobTitle, bio);
-									setCard(userData);
-									uploadImage();
-									history.push('/');
-								} catch (error) {
-									console.log(error);
-								}
-							}}>
+						<form className="flex flex-col p-4 pt-10 w-2/3 ml-4">
 							<input
 								id="fullName"
 								maxLength="50"
@@ -85,16 +73,14 @@ const UserAdminForm = (fullName, jobTitle, bio) => {
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 								placeholder="Full Name"
 								type="text"
-								value={Name}
 								onChange={(e) => setName(e.target.value)}
 							/>
 							<input
-								id="job"
+								id="jobTitle"
 								maxLength="50"
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 								placeholder="Job Type"
 								type="text"
-								value={job}
 								onChange={(e) => setJob(e.target.value)}
 							/>
 							<textarea
@@ -103,7 +89,6 @@ const UserAdminForm = (fullName, jobTitle, bio) => {
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none resize-none"
 								placeholder="Bio"
 								type="text"
-								value={about}
 								onChange={(e) => setAbout(e.target.value)}
 							/>
 							<div className="flex mb-4 items-center">
@@ -113,6 +98,17 @@ const UserAdminForm = (fullName, jobTitle, bio) => {
 						</form>
 					</div>
 					<button
+						onSubmit={async (e) => {
+							e.preventDefault();
+							try {
+								const userData = await updateCard(name, job, about);
+								setCard(userData);
+								uploadImage();
+								history.push('/');
+							} catch (error) {
+								console.log(error);
+							}
+						}}
 						type="submit"
 						className="bg-green-500 hover:bg-green-600 p-3 rounded text-white">
 						Save Profile
