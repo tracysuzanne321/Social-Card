@@ -98,12 +98,12 @@ const UserAdminForm = () => {
 						</form>
 					</div>
 					<button
-						onSubmit={async (e) => {
+						onClick={async (e) => {
 							e.preventDefault();
 							try {
 								const userData = await updateCard(name, job, about);
 								setCard(userData);
-								uploadImage();
+
 								history.push('/');
 							} catch (error) {
 								console.log(error);
