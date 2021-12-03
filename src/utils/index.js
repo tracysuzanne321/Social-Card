@@ -60,9 +60,7 @@ export const updateCard = async (
 			}),
 		});
 		const data = await response.json();
-		setCard(data.card);
 		localStorage.setItem('MyToken', data.token);
-		return { fullName, jobTitle, bio, socialLinks, profileImageUrl };
 	} catch (error) {
 		throw error;
 	}
