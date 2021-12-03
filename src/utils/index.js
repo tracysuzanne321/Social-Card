@@ -36,10 +36,15 @@ export const createUser = async (username, email, password, setUser) => {
 		throw error;
 	}
 };
-export const updateCard = async (cardDetails) => {
+export const updateCard = async (
+	fullName,
+	jobTitle,
+	bio,
+	socialLinks,
+	profileImageUrl,
+	setCard,
+) => {
 	try {
-		const { fullName, jobTitle, bio, socialLinks, profileImageUrl } =
-			cardDetails;
 		const response = await fetch(`${apiUrl}/updateCard`, {
 			method: 'PUT',
 			headers: {
@@ -55,8 +60,9 @@ export const updateCard = async (cardDetails) => {
 			}),
 		});
 		const data = await response.json();
+		setCard(data.card);
 		localStorage.setItem('MyToken', data.token);
-		return cardDetails;
+		return { fullName, jobTitle, bio, socialLinks, profileImageUrl };
 	} catch (error) {
 		throw error;
 	}

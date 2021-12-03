@@ -16,13 +16,21 @@ function App() {
 		username: '',
 		email: '',
 	});
+	const [card, setCard] = useState({
+		fullName: '',
+		jobTitle: '',
+		bio: '',
+		socialLinks: '',
+		profileImageUrl: '',
+	});
 
 	useEffect(() => {
 		tokenFetch(setUser);
+		tokenFetch(setCard);
 	}, []);
 
 	return (
-		<AppContext.Provider value={{ user, setUser }}>
+		<AppContext.Provider value={{ user, setUser, card, setCard }}>
 			<BrowserRouter>
 				<Navbar />
 				<div className="flex flex-col flex-1">
