@@ -112,7 +112,7 @@ const UserAdminForm = () => {
 								});
 
 								setCard(userData);
-								history.push('/userprofile');
+								history.push(`/u/${user.username}`);
 							} catch (error) {
 								console.error(error);
 							}
