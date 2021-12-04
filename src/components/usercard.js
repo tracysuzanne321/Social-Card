@@ -3,13 +3,6 @@ import iGicon from '../images/instagram.png';
 import Ticon from '../images/twitter.png';
 import Ghicon from '../images/github.png';
 import Ldicon from '../images/linkedin.png';
-import User from '../images/User.jpg';
-import { icons } from 'react-icons';
-import { AppContext } from '../AppContext';
-import { useContext } from 'react';
-import { UrlContainer } from './UrlContainer';
-
-// npm install react-icons --save //
 
 const UserCard = ({
 	profileImageUrl,
@@ -18,8 +11,6 @@ const UserCard = ({
 	bio,
 	socialLinks,
 }) => {
-	const { card } = useContext(AppContext);
-
 	const getSocialNetworkImage = (socialNetworkName) => {
 		switch (socialNetworkName) {
 			case 'facebook':
@@ -32,8 +23,9 @@ const UserCard = ({
 				return Ghicon;
 			case 'linkedin':
 				return Ldicon;
+			default:
+				return '';
 		}
-		return '';
 	};
 
 	return (

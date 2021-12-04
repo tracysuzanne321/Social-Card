@@ -9,7 +9,7 @@ export const tokenFetch = async (setUser) => {
 		const data = await response.json();
 		setUser(data.user);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 
@@ -37,7 +37,7 @@ export const createUser = async (username, email, password) => {
 };
 export const updateCard = async (cardDetails) => {
 	try {
-		const request = await fetch(`${apiUrl}/updateCard`, {
+		await fetch(`${apiUrl}/updateCard`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -45,7 +45,6 @@ export const updateCard = async (cardDetails) => {
 			},
 			body: JSON.stringify(cardDetails),
 		});
-		const response = await request.json();
 		return cardDetails;
 	} catch (error) {
 		throw error;
@@ -62,7 +61,7 @@ export const getCard = async (username) => {
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 

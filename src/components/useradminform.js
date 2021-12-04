@@ -26,10 +26,9 @@ const UserAdminForm = () => {
 				},
 			);
 			const data = await response.json();
-			console.log(data);
 			return data.secure_url;
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
@@ -115,7 +114,7 @@ const UserAdminForm = () => {
 								setCard(userData);
 								history.push('/userprofile');
 							} catch (error) {
-								console.log(error);
+								console.error(error);
 							}
 						}}
 						type="submit"
