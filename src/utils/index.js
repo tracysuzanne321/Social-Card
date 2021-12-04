@@ -13,7 +13,7 @@ export const tokenFetch = async (setUser) => {
 	}
 };
 
-export const createUser = async (username, email, password, setUser) => {
+export const createUser = async (username, email, password) => {
 	try {
 		const response = await fetch(`${apiUrl}/user`, {
 			method: 'POST',
@@ -25,7 +25,6 @@ export const createUser = async (username, email, password, setUser) => {
 			}),
 		});
 		const data = await response.json();
-		setUser(data.user);
 		localStorage.setItem('MyToken', data.token);
 		return {
 			username: data.newUser.username,
@@ -36,33 +35,34 @@ export const createUser = async (username, email, password, setUser) => {
 		throw error;
 	}
 };
-export const updateCard = async (
-	fullName,
-	jobTitle,
-	bio,
-	socialLinks,
-	profileImageUrl,
-	setCard,
-) => {
+export const updateCard = async (cardDetails) => {
 	try {
-		const response = await fetch(`${apiUrl}/updateCard`, {
+		const request = await fetch(`${apiUrl}/updateCard`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
 			},
-			body: JSON.stringify({
-				fullName: fullName,
-				jobTitle: jobTitle,
-				bio: bio,
-				socialLinks: socialLinks,
-				profileImageUrl: profileImageUrl,
-			}),
+			body: JSON.stringify(cardDetails),
 		});
-		const data = await response.json();
-		localStorage.setItem('MyToken', data.token);
+		const response = await request.json();
+		return cardDetails;
 	} catch (error) {
 		throw error;
+	}
+};
+
+export const getCard = async (username) => {
+	try {
+		const response = await fetch(`${apiUrl}/getCard`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ username: username }),
+		});
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.log(error);
 	}
 };
 
