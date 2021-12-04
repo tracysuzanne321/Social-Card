@@ -5,6 +5,11 @@ import ModalBody from '@material-tailwind/react/ModalBody';
 import ModalFooter from '@material-tailwind/react/ModalFooter';
 import Button from '@material-tailwind/react/Button';
 import { IoMdAddCircle } from 'react-icons/io';
+import fBicon from '../images/facebook.png';
+import iGicon from '../images/instagram.png';
+import Ticon from '../images/twitter.png';
+import Ghicon from '../images/github.png';
+import Ldicon from '../images/linkedin.png';
 
 export default function ModalLink() {
 	const [showModal, setShowModal] = useState(false);

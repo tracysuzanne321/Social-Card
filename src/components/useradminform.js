@@ -10,7 +10,7 @@ const UserAdminForm = () => {
 	const [job, setJob] = useState('');
 	const [about, setAbout] = useState('');
 	const [userImage, setUserImage] = useState('');
-	const { setCard } = useContext(AppContext);
+	const { setCard, user } = useContext(AppContext);
 	const history = useHistory();
 
 	const uploadImage = async () => {
@@ -27,6 +27,7 @@ const UserAdminForm = () => {
 			);
 			const data = await response.json();
 			console.log(data);
+			return data.secure_url;
 		} catch (error) {
 			console.log(error);
 		}
@@ -101,10 +102,18 @@ const UserAdminForm = () => {
 						onClick={async (e) => {
 							e.preventDefault();
 							try {
-								const userData = await updateCard(name, job, about);
-								setCard(userData);
+								const profileImageUrl = await uploadImage();
+								const userData = await updateCard({
+									username: user.username,
+									jobTitle: job,
+									bio: about,
+									fullName: name,
+									socialLinks: [],
+									profileImageUrl: profileImageUrl,
+								});
 
-								history.push('/');
+								setCard(userData);
+								history.push('/userprofile');
 							} catch (error) {
 								console.log(error);
 							}

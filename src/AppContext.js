@@ -11,7 +11,7 @@ export const AppContext = createContext({
 		fullName: '',
 		jobTitle: '',
 		bio: '',
-		socialLinks: '',
+		socialLinks: [],
 		profileImageUrl: '',
 	},
 });

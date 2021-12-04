@@ -20,7 +20,7 @@ function App() {
 		fullName: '',
 		jobTitle: '',
 		bio: '',
-		socialLinks: '',
+		socialLinks: [],
 		profileImageUrl: '',
 	});
 
@@ -44,7 +44,7 @@ function App() {
 						<Route path="/login">
 							<Login />
 						</Route>
-						<Route path="/userprofile">
+						<Route path="/u">
 							<UserProfile />
 						</Route>
 						<Route path="/">
