@@ -1,13 +1,36 @@
+import fBicon from '../images/facebook.png';
+import iGicon from '../images/instagram.png';
+import Ticon from '../images/twitter.png';
+import Ghicon from '../images/github.png';
+import Ldicon from '../images/linkedin.png';
+
 const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
-export const tokenFetch = async (setUser) => {
+export const getSocialNetworkImage = (socialNetworkName) => {
+	switch (socialNetworkName) {
+		case 'facebook':
+			return fBicon;
+		case 'instagram':
+			return iGicon;
+		case 'twitter':
+			return Ticon;
+		case 'github':
+			return Ghicon;
+		case 'linkedin':
+			return Ldicon;
+		default:
+			return '';
+	}
+};
+
+export const tokenFetch = async () => {
 	try {
-		const response = await fetch(`${apiUrl}user`, {
+		const response = await fetch(`${apiUrl}/token`, {
 			method: 'GET',
 			headers: { Authorization: `Bearer ${localStorage.getItem('MyToken')}` },
 		});
 		const data = await response.json();
-		setUser(data.user);
+		return data.user;
 	} catch (error) {
 		console.error(error);
 	}

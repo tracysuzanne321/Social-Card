@@ -1,19 +1,33 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 // import user from '../images/User.jpg';
 import ModalLink from './modal';
 import { AppContext } from '../AppContext';
-import { updateCard } from '../utils';
+import { getSocialNetworkImage, updateCard } from '../utils';
 
 const UserAdminForm = () => {
-	const [name, setName] = useState('');
-	const [job, setJob] = useState('');
-	const [about, setAbout] = useState('');
-	const [userImage, setUserImage] = useState('');
-	const { setCard, user } = useContext(AppContext);
-	const history = useHistory();
+	const { setCard, card, user } = useContext(AppContext);
 
-	const uploadImage = async () => {
+	const [fullName, setFullName] = useState(card.fullName);
+	const [jobTitle, setJob] = useState(card.jobTitle);
+	const [bio, setBio] = useState(card.bio);
+	const [socialLinks, setSocialLinks] = useState(card.socialLinks);
+	const [profileImageUrl, setProfileImageUrl] = useState(card.profileImageUrl);
+	useEffect(() => {
+		setFullName(card.fullName);
+		setJob(card.jobTitle);
+		setBio(card.bio);
+		setSocialLinks(card.socialLinks);
+		setProfileImageUrl(card.profileImageUrl);
+	}, [
+		card.fullName,
+		card.jobTitle,
+		card.bio,
+		card.socialLinks,
+		card.profileImageUrl,
+	]);
+	const history = useHistory();
+	const uploadImage = async (userImage) => {
 		try {
 			const formData = new FormData();
 			formData.append('file', userImage);
@@ -32,12 +46,21 @@ const UserAdminForm = () => {
 		}
 	};
 
-	const showPreview = (event) => {
+	const showPreview = async (event) => {
 		if (event.target.files.length > 0) {
-			const src = URL.createObjectURL(event.target.files[0]);
-			const preview = document.getElementById('upload-preview');
-			preview.src = src;
+			const url = await uploadImage(event.target.files[0]);
+			setProfileImageUrl(url);
 		}
+	};
+
+	const addSocialLink = (newSocialNetwork, newUrl) => {
+		setSocialLinks([
+			...socialLinks,
+			{
+				socialNetwork: newSocialNetwork,
+				url: newUrl,
+			},
+		]);
 	};
 
 	return (
@@ -48,6 +71,7 @@ const UserAdminForm = () => {
 					<div className="flex">
 						<div className="w-1/3 flex flex-col items-center justify-center">
 							<img
+								src={profileImageUrl}
 								id="upload-preview"
 								alt=""
 								className=" ml-7 my-3 rounded-lg mt-4"
@@ -58,7 +82,6 @@ const UserAdminForm = () => {
 									className="absolute cursor-pointer h-full left-0 opacity-0 top-0 w-full "
 									type="file"
 									onChange={(event) => {
-										setUserImage(event.target.files[0]);
 										showPreview(event);
 									}}
 								/>
@@ -73,7 +96,8 @@ const UserAdminForm = () => {
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 								placeholder="Full Name"
 								type="text"
-								onChange={(e) => setName(e.target.value)}
+								value={fullName}
+								onChange={(e) => setFullName(e.target.value)}
 							/>
 							<input
 								id="jobTitle"
@@ -81,6 +105,7 @@ const UserAdminForm = () => {
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 								placeholder="Job Type"
 								type="text"
+								value={jobTitle}
 								onChange={(e) => setJob(e.target.value)}
 							/>
 							<textarea
@@ -89,10 +114,40 @@ const UserAdminForm = () => {
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none resize-none"
 								placeholder="Bio"
 								type="text"
-								onChange={(e) => setAbout(e.target.value)}
+								value={bio}
+								onChange={(e) => setBio(e.target.value)}
 							/>
+							<div className="flex flex-row mb-4">
+								{(socialLinks ?? []).map((link) => (
+									<div
+										key={link.socialNetwork}
+										className="relative w-10 h-10 mr-5">
+										<img
+											key={link.socialNetwork}
+											className="w-full"
+											src={getSocialNetworkImage(link.socialNetwork)}
+											alt=""
+										/>
+										<div
+											onClick={() => {
+												setSocialLinks(
+													socialLinks.filter(
+														(socialLink) =>
+															socialLink.socialNetwork !== link.socialNetwork,
+													),
+												);
+											}}
+											className="cursor-pointer -mr-2 flex justify-center items-center absolute top-0 right-0 h-5 w-5 bg-red-600 text-white rounded text-center">
+											×
+										</div>
+									</div>
+								))}
+							</div>
 							<div className="flex mb-4 items-center">
-								<ModalLink />
+								<ModalLink
+									socialLinks={socialLinks}
+									addSocialLink={addSocialLink}
+								/>
 								<div className="text-gray-400">Add social link</div>
 							</div>
 						</form>
@@ -101,13 +156,12 @@ const UserAdminForm = () => {
 						onClick={async (e) => {
 							e.preventDefault();
 							try {
-								const profileImageUrl = await uploadImage();
 								const userData = await updateCard({
 									username: user.username,
-									jobTitle: job,
-									bio: about,
-									fullName: name,
-									socialLinks: [],
+									jobTitle: jobTitle,
+									bio: bio,
+									fullName: fullName,
+									socialLinks: socialLinks,
 									profileImageUrl: profileImageUrl,
 								});
 
@@ -119,7 +173,7 @@ const UserAdminForm = () => {
 						}}
 						type="submit"
 						className="bg-green-500 hover:bg-green-600 p-3 rounded text-white">
-						Save Profile
+						Save and View Profile
 					</button>
 				</div>
 			</div>

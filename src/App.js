@@ -25,8 +25,16 @@ function App() {
 	});
 
 	useEffect(() => {
-		tokenFetch(setUser);
-		tokenFetch(setCard);
+		async function fetchData() {
+			const data = await tokenFetch();
+			const { username, email, password, _id, __v, ...cardDetails } = data;
+			setUser({
+				username: username,
+				email: email,
+			});
+			setCard(cardDetails);
+		}
+		fetchData();
 	}, []);
 
 	return (

@@ -1,8 +1,11 @@
 import mainimg from '../images/danny.png';
 import { Link } from 'react-router-dom';
 import UserCard from '../components/usercard';
+import { AppContext } from '../AppContext';
+import { useContext } from 'react';
 
 const Home = () => {
+	const { user } = useContext(AppContext);
 	return (
 		<>
 			<div className="flex flex-col items-center lg:flex-row mx-10 sm:mx-24 mt-8 justify-around">
@@ -14,11 +17,19 @@ const Home = () => {
 						Poke slow-carb mixtape knausgaard, typewriter street art gentrify
 						hammock starladder roathse. Craies vegan tousled etsy austin.
 					</p>
-					<Link
-						to="/signup"
-						className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
-						Sign Up
-					</Link>
+					{user?.username === '' ? (
+						<Link
+							to="/signup"
+							className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
+							Sign Up
+						</Link>
+					) : (
+						<Link
+							to={`/u/${user.username}`}
+							className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
+							My Card
+						</Link>
+					)}
 				</div>
 
 				<UserCard

@@ -97,7 +97,7 @@ const Navbar = () => {
 							<NavLink
 								to="/useradmin"
 								className="bg-gray-100 hover:bg-gray-200 px-7 py-2.5 rounded-lg">
-								Settings
+								Account
 							</NavLink>
 						</li>
 						<li className=" mr-7 ml-4">
