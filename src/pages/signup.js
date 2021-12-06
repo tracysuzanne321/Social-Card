@@ -13,11 +13,11 @@ const SignUp = () => {
 			<div className="flex flex-col items-end justify-center md:mt-0 md:w-7/12 mt-8 pb-32 relative sm:pb-0">
 				<div className="absolute left-0 lg:pl-8 mt-8 px-4 sm:pr-0 sm:text-right sm:w-4/6 top-0">
 					<h1 className="font-bold leading-snug mb-10 text-4xl">
-						Slow-carb next level shoindcgoitch ethical authentic.
+						You provide the socials and we’ll do the rest!.
 					</h1>
 					<h2>
-						Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-						hammock starladder roathse. Craies vegan tousled etsy austin.
+						Sign Up to create your own SocialCard and create a hub for
+						everything you!.
 					</h2>
 				</div>
 				<div>

@@ -95,7 +95,7 @@ const Navbar = () => {
 					<div className="ml-auto hidden sm:flex">
 						<li className="ml-auto mr-12 w-16">
 							<NavLink
-								to="/useradmin"
+								to="/account"
 								className="bg-gray-100 hover:bg-gray-200 px-7 py-2.5 rounded-lg">
 								Account
 							</NavLink>
