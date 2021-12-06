@@ -14,8 +14,8 @@ const Home = () => {
 						Everything in one place.
 					</p>
 					<p>
-						Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-						hammock starladder roathse. Craies vegan tousled etsy austin.
+						One person, one link. SocialCard provides links to everything so
+						that you dont have to.
 					</p>
 					{user?.username === '' ? (
 						<Link
@@ -36,10 +36,8 @@ const Home = () => {
 					profileImageUrl={mainimg}
 					fullName="Danny Baily"
 					jobTitle="Software Engineer"
-					bio={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras purus
-					purus, maximus vitae dolor et, sodales bibendum mauris. Donec tempor,
-					lorem vitae vestibulum auctor, lectus velit ultricies metus, vel
-					ultrices massa sapien eget ipsum.`}
+					bio={`Engineer with over 3+ years experience working within the finance domain. Proficient in design, analysis, development and testing of User Interface frameworks. 
+					Experience of implemented scalable applications.`}
 					socialLinks={[
 						{
 							socialNetwork: 'facebook',

@@ -10,6 +10,7 @@ import UserAdmin from './pages/useradmin';
 import UserProfile from './pages/userprofile';
 import Navbar from './components/nav';
 import Footer from './components/footer';
+import Account from './pages/account';
 
 function App() {
 	const [user, setUser] = useState({
@@ -54,6 +55,9 @@ function App() {
 						</Route>
 						<Route path="/u">
 							<UserProfile />
+						</Route>
+						<Route path="/account">
+							<Account />
 						</Route>
 						<Route path="/">
 							<Home />

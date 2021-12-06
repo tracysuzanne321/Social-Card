@@ -58,6 +58,31 @@ export const createUser = async (username, email, password) => {
 		throw error;
 	}
 };
+
+export const updateUser = async (username, email, password) => {
+	try {
+		const response = await fetch(`${apiUrl}/update`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
+			},
+			body: JSON.stringify({
+				username: username,
+				email: email,
+				password: password,
+			}),
+		});
+		const data = await response.json();
+		return {
+			username: data.result.username,
+			email: data.result.email,
+			id: data.result._id,
+		};
+	} catch (error) {
+		throw error;
+	}
+};
 export const updateCard = async (cardDetails) => {
 	try {
 		await fetch(`${apiUrl}/updateCard`, {
