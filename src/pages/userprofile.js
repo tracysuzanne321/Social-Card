@@ -20,7 +20,26 @@ const UserProfile = () => {
 		fetchData();
 	}, [username]);
 	const { user } = useContext(AppContext);
-
+	const UserProfileButton = () => {
+		if (user?.username === '') {
+			return (
+				<Link
+					to="/signup"
+					className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
+					Make Your Own SocialCard.
+				</Link>
+			);
+		} else if (user?.username === username) {
+			return (
+				<Link
+					to="/useradmin"
+					className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
+					Edit Card
+				</Link>
+			);
+		}
+		return null;
+	};
 	return (
 		<>
 			<div className="flex flex-col items-center">
@@ -32,19 +51,7 @@ const UserProfile = () => {
 				)}
 			</div>
 			<div className="flex justify-center items-center mb-4">
-				{user?.username === '' ? (
-					<Link
-						to="/signup"
-						className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
-						Make Your Own SocialCard.
-					</Link>
-				) : (
-					<Link
-						to="/useradmin"
-						className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white">
-						Edit Card
-					</Link>
-				)}
+				<UserProfileButton />
 			</div>
 		</>
 	);

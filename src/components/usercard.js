@@ -19,11 +19,15 @@ const UserCard = ({
 					<p className="mb-2 text-4xl mt-6">{fullName}</p>
 					<p className="mb-2 text-2xl">{jobTitle}</p>
 					<p className="mb-4 text-body">{bio}</p>
-					<div className="flex flex-row mb-4 w-12 h-12">
+					<div className="flex flex-row mb-4 ">
 						{(socialLinks ?? []).map((link) => (
-							<a key={link.socialNetwork} href={link.url}>
+							<a
+								key={link.socialNetwork}
+								href={link.url}
+								target="_blank"
+								rel="noreferrer">
 								<img
-									className="mr-2 "
+									className="mr-2 w-12 h-12 "
 									src={getSocialNetworkImage(link.socialNetwork)}
 									alt=""
 								/>

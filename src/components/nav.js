@@ -62,7 +62,7 @@ const MobileNav = () => {
 };
 
 const Navbar = () => {
-	const { setUser, user } = useContext(AppContext);
+	const { setUser, user, setCard } = useContext(AppContext);
 	const history = useHistory();
 	return (
 		<nav className="flex items-center py-8 body-font">
@@ -108,6 +108,13 @@ const Navbar = () => {
 									setUser({
 										username: '',
 										email: '',
+									});
+									setCard({
+										fullName: '',
+										jobTitle: '',
+										bio: '',
+										socialLinks: [],
+										profileImageUrl: '',
 									});
 									history.push('/');
 								}}

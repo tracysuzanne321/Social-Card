@@ -1,8 +1,8 @@
-import fBicon from '../images/facebook.png';
-import iGicon from '../images/instagram.png';
-import Ticon from '../images/twitter.png';
-import Ghicon from '../images/github.png';
-import Ldicon from '../images/linkedin.png';
+import fBicon from '../images/Facebook_black.svg';
+import iGicon from '../images/Instagram_black.svg';
+import Ticon from '../images/Twitter_black.svg';
+import Ghicon from '../images/Github_black.svg';
+import Ldicon from '../images/LinkedIN_black.svg';
 
 const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
@@ -25,78 +25,74 @@ export const getSocialNetworkImage = (socialNetworkName) => {
 
 export const tokenFetch = async () => {
 	try {
-		const response = await fetch(`${apiUrl}/token`, {
-			method: 'GET',
-			headers: { Authorization: `Bearer ${localStorage.getItem('MyToken')}` },
-		});
-		const data = await response.json();
-		return data.user;
+		const token = localStorage.getItem('MyToken');
+		if (token !== null) {
+			const response = await fetch(`${apiUrl}/token`, {
+				method: 'GET',
+				headers: { Authorization: `Bearer ${token}` },
+			});
+			const data = await response.json();
+			if (data.message === 'Check server logs') {
+				throw new Error('Error fetching user data, token invalid');
+			}
+			return data.user;
+		}
+		return null;
 	} catch (error) {
+		localStorage.removeItem('MyToken');
 		console.error(error);
 	}
 };
 
 export const createUser = async (username, email, password) => {
-	try {
-		const response = await fetch(`${apiUrl}/user`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				username: username,
-				email: email,
-				password: password,
-			}),
-		});
-		const data = await response.json();
-		localStorage.setItem('MyToken', data.token);
-		return {
-			username: data.newUser.username,
-			email: data.newUser.email,
-			id: data.newUser._id,
-		};
-	} catch (error) {
-		throw error;
-	}
+	const response = await fetch(`${apiUrl}/user`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			username: username,
+			email: email,
+			password: password,
+		}),
+	});
+	const data = await response.json();
+	localStorage.setItem('MyToken', data.token);
+	return {
+		username: data.newUser.username,
+		email: data.newUser.email,
+		id: data.newUser._id,
+	};
 };
 
 export const updateUser = async (username, email, password) => {
-	try {
-		const response = await fetch(`${apiUrl}/update`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
-			},
-			body: JSON.stringify({
-				username: username,
-				email: email,
-				password: password,
-			}),
-		});
-		const data = await response.json();
-		return {
-			username: data.result.username,
-			email: data.result.email,
-			id: data.result._id,
-		};
-	} catch (error) {
-		throw error;
-	}
+	const response = await fetch(`${apiUrl}/update`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
+		},
+		body: JSON.stringify({
+			username: username,
+			email: email,
+			password: password,
+		}),
+	});
+	const data = await response.json();
+	return {
+		username: data.result.username,
+		email: data.result.email,
+		id: data.result._id,
+	};
 };
 export const updateCard = async (cardDetails) => {
-	try {
-		await fetch(`${apiUrl}/updateCard`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
-			},
-			body: JSON.stringify(cardDetails),
-		});
-		return cardDetails;
-	} catch (error) {
-		throw error;
-	}
+	await fetch(`${apiUrl}/updateCard`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
+		},
+		body: JSON.stringify(cardDetails),
+	});
+	return cardDetails;
 };
 
 export const getCard = async (username) => {
@@ -114,44 +110,42 @@ export const getCard = async (username) => {
 };
 
 export const deleteUser = async () => {
-	try {
-		await fetch(`${apiUrl}/delete`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
-			},
-		});
-		return {
-			message: 'success',
-		};
-	} catch (error) {
-		throw error;
-	}
+	await fetch(`${apiUrl}/delete`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('MyToken')}`,
+		},
+	});
+	return {
+		message: 'success',
+	};
 };
 
 export const login = async (email, password) => {
-	try {
-		const response = await fetch(`${apiUrl}/login`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email: email,
-				password: password,
-			}),
-		});
-		const data = await response.json();
-		localStorage.setItem('MyToken', data.token);
-		return {
-			username: data.user.username,
-			email: data.user.email,
-			id: data.user._id,
-		};
-	} catch (error) {
-		throw error;
+	const response = await fetch(`${apiUrl}/login`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			email: email,
+			password: password,
+		}),
+	});
+
+	const data = await response.json();
+	if (response.status === 500) {
+		throw new Error(data.message);
 	}
+	if (data.token !== undefined) {
+		localStorage.setItem('MyToken', data.token);
+	}
+	return {
+		username: data.user.username,
+		email: data.user.email,
+		id: data.user._id,
+	};
 };
 
 export const logOut = async () => {

@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 export const LogInForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [valid, setValid] = useState(true);
+	const [validationError, setValidationError] = useState(null);
 	const { setUser } = useContext(AppContext);
 	const history = useHistory();
 
@@ -20,7 +20,7 @@ export const LogInForm = () => {
 					setUser(userData);
 					history.push(`/u/${userData.username}`);
 				} catch (e) {
-					setValid(false);
+					setValidationError(e.message);
 				}
 			}}>
 			<input
@@ -39,10 +39,8 @@ export const LogInForm = () => {
 				type="password"
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			{!valid && (
-				<div className="mb-2 text-red-600 text-sm">
-					Invalid email or password!
-				</div>
+			{validationError && (
+				<div className="mb-2 text-red-600 text-sm">{validationError}</div>
 			)}
 			<button
 				type="submit"

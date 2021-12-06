@@ -28,12 +28,15 @@ function App() {
 	useEffect(() => {
 		async function fetchData() {
 			const data = await tokenFetch();
-			const { username, email, password, _id, __v, ...cardDetails } = data;
-			setUser({
-				username: username,
-				email: email,
-			});
-			setCard(cardDetails);
+			if (data !== null) {
+				console.log(data);
+				const { username, email, password, _id, __v, ...cardDetails } = data;
+				setUser({
+					username: username,
+					email: email,
+				});
+				setCard(cardDetails);
+			}
 		}
 		fetchData();
 	}, []);

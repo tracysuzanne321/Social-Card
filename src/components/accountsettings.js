@@ -4,12 +4,13 @@ import { AppContext } from '../AppContext';
 import { useHistory } from 'react-router';
 
 const AccountSettings = () => {
-	const { setUser } = useContext(AppContext);
+	const { setUser, setCard } = useContext(AppContext);
 
-	const [email, setEmail] = useState();
+	const [email, setEmail] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [valid, setValid] = useState(true);
+	const [message, setMessage] = useState(null);
 
 	const history = useHistory();
 	return (
@@ -21,7 +22,10 @@ const AccountSettings = () => {
 					try {
 						const userData = await updateUser(username, email, password);
 						setUser(userData);
-						history.push('/');
+						setMessage('Updated user details.');
+						setUsername('');
+						setPassword('');
+						setEmail('');
 					} catch (e) {
 						setValid(false);
 					}
@@ -33,6 +37,7 @@ const AccountSettings = () => {
 					className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 					placeholder="Update Email"
 					type="text"
+					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
 				<input
@@ -42,6 +47,7 @@ const AccountSettings = () => {
 					className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 					placeholder="Update Username"
 					type="text"
+					value={username}
 					onChange={(e) => setUsername(e.target.value)}
 				/>
 				<input
@@ -49,6 +55,7 @@ const AccountSettings = () => {
 					className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 					placeholder="Update Password"
 					type="password"
+					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				{!valid && (
@@ -56,6 +63,7 @@ const AccountSettings = () => {
 						Invalid username, email or password!
 					</div>
 				)}
+				{message && <div className="mb-2  text-sm">{message}</div>}
 				<button
 					type="submit"
 					className="bg-green-500 hover:bg-green-600 p-1.5 rounded text-white mt-4 w-full py-3">
@@ -73,7 +81,13 @@ const AccountSettings = () => {
 								username: '',
 								email: '',
 							});
-
+							setCard({
+								fullName: '',
+								jobTitle: '',
+								bio: '',
+								socialLinks: [],
+								profileImageUrl: '',
+							});
 							history.push('/');
 						}
 					}}>
