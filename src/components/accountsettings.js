@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
-import { updateUser, deleteUser, logOut } from '../utils';
+import { updateUser } from '../utils';
 import { AppContext } from '../AppContext';
-import { useHistory } from 'react-router';
+import DeleteModal from './deletemodal';
 
 const AccountSettings = () => {
-	const { setUser, setCard } = useContext(AppContext);
+	const { setUser } = useContext(AppContext);
 
 	const [email, setEmail] = useState('');
 	const [username, setUsername] = useState('');
@@ -12,7 +12,6 @@ const AccountSettings = () => {
 	const [valid, setValid] = useState(true);
 	const [message, setMessage] = useState(null);
 
-	const history = useHistory();
 	return (
 		<>
 			<form
@@ -71,28 +70,7 @@ const AccountSettings = () => {
 				</button>
 			</form>
 			<div className="flex m-auto max-w-sm">
-				<button
-					className="bg-green-500 hover:bg-green-600 p-1.5 rounded text-white  w-full mt-20 py-3 "
-					onClick={async () => {
-						const result = await deleteUser();
-						if (result.message === 'success') {
-							await logOut();
-							setUser({
-								username: '',
-								email: '',
-							});
-							setCard({
-								fullName: '',
-								jobTitle: '',
-								bio: '',
-								socialLinks: [],
-								profileImageUrl: '',
-							});
-							history.push('/');
-						}
-					}}>
-					Delete User
-				</button>
+				<DeleteModal />
 			</div>
 		</>
 	);
