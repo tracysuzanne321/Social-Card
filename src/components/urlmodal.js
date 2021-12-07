@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import DeleteConfirmModal from './deleteconfirmmodal';
+import { AiOutlineCopy } from 'react-icons/ai';
 
-export default function DeleteModal() {
+export default function URLModal() {
 	const [open, setOpen] = useState(false);
 
 	return (
 		<>
-			<button
-				className="bg-green-500 hover:bg-green-600 p-1.5 rounded text-white  w-full mt-20 py-3 cursor-pointer "
+			<AiOutlineCopy
+				className="cursor-pointer ml-1.5 h-7 w-7 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ... fill-current text-gray"
 				color="black"
 				type="button"
 				onClick={(e) => setOpen(true)}
-				ripple="light">
-				Delete Account
-			</button>
+				ripple="light"></AiOutlineCopy>
 			<div
 				className={`
                     ${open ? '' : 'opacity-0 pointer-events-none'}
@@ -55,20 +53,16 @@ export default function DeleteModal() {
                         focus:outline-none
                     ">
 						<div className="flex flex-col items-center justify-between mb-6">
-							<div className="text-gray-900 text-2xl text-bold mt-0 mb-0">
-								We'll be sad to see you go.
+							<div className="text-gray-900 text-2xl text-bold  mt-4 mb-2">
+								Share with your friends!
 							</div>
-							<div className="text-gray-900 text-1xl  mt-4 mb-2">
-								Are you sure you want to delete your SocialCard account?
+							<div className="text-gray-900 text-lg mt-0 mb-0">
+								Your unique SocialCard URL has been copied to your clipboard.
 							</div>
 						</div>
 
 						<div className="flex items-center justify-end gap-4">
 							<button
-								onClick={(e) => {
-									e.preventDefault();
-									setOpen(false);
-								}}
 								className="
                                 false
                                 flex
@@ -87,12 +81,21 @@ export default function DeleteModal() {
                                 px-6
                                 text-xs
                                 leading-normal
-                                bg-transparent
+                                text-white
+                                bg-green-500
+                                hover:bg-green-700
+                                focus:bg-green-400
+                                active:bg-green-800
+                                shadow-md-green
+                                hover:shadow-lg-green
                                 font-pop
-                            ">
-								Cancel
+                            "
+								onClick={async (e) => {
+									e.preventDefault();
+									setOpen(false);
+								}}>
+								OK
 							</button>
-							<DeleteConfirmModal />
 						</div>
 					</div>
 				</div>
