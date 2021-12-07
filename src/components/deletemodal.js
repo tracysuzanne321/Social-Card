@@ -1,41 +1,47 @@
-import React, { useState } from 'react';
-import { IoMdAddCircle } from 'react-icons/io';
+import React, { useState, useContext } from 'react';
+// import { IoMdAddCircle } from 'react-icons/io';
+import { deleteUser, logOut } from '../utils';
+import { AppContext } from '../AppContext';
+import { useHistory } from 'react-router';
+// import DeleteModal from './deletemodal';
 
-export default function ModalLink({ socialLinks, addSocialLink }) {
+export default function DeleteModal() {
 	const [open, setOpen] = useState(false);
+	const { setUser, setCard } = useContext(AppContext);
+	const history = useHistory();
 
-	const [url, setUrl] = useState('');
-	const allSocialNetworks = [
-		'facebook',
-		'twitter',
-		'linkedin',
-		'instagram',
-		'github',
-	];
-	var leftoverSocialNetworks = allSocialNetworks.filter(
-		(socialNetworkName) =>
-			(socialLinks ?? [])
-				.map((l) => l.socialNetwork)
-				.some(
-					(existingSocialNetworkName) =>
-						existingSocialNetworkName === socialNetworkName,
-				) === false,
-	);
-	const [socialNetwork, setSocialNetwork] = useState(
-		leftoverSocialNetworks.length > 0
-			? leftoverSocialNetworks[0]
-			: 'Cannot select more networks',
-	);
+	// const [url, setUrl] = useState('');
+	// const allSocialNetworks = [
+	// 	'facebook',
+	// 	'twitter',
+	// 	'linkedin',
+	// 	'instagram',
+	// 	'github',
+	// ];
+	// var leftoverSocialNetworks = allSocialNetworks.filter(
+	// 	(socialNetworkName) =>
+	// 		(socialLinks ?? [])
+	// 			.map((l) => l.socialNetwork)
+	// 			.some(
+	// 				(existingSocialNetworkName) =>
+	// 					existingSocialNetworkName === socialNetworkName,
+	// 			) === false,
+	// );
+	// const [socialNetwork, setSocialNetwork] = useState(
+	// 	leftoverSocialNetworks.length > 0
+	// 		? leftoverSocialNetworks[0]
+	// 		: 'Cannot select more networks',
+	// );
 	return (
 		<>
-			<IoMdAddCircle
-				className="w-10 h-10 cursor-pointer"
+			<button
+				className="bg-green-500 hover:bg-green-600 p-1.5 rounded text-white  w-full mt-20 py-3 cursor-pointer "
 				color="black"
 				type="button"
 				onClick={(e) => setOpen(true)}
 				ripple="light">
-				Add Social Links
-			</IoMdAddCircle>
+				Delete Account
+			</button>
 			<div
 				className={`
                     ${open ? '' : 'opacity-0 pointer-events-none'}
@@ -49,7 +55,7 @@ export default function ModalLink({ socialLinks, addSocialLink }) {
                     focus:outline-none
                     transition-all
                     duration-500
-					bg-black
+                    bg-black
                     bg-opacity-70   
                 `}>
 				<div
@@ -77,67 +83,11 @@ export default function ModalLink({ socialLinks, addSocialLink }) {
                         focus:outline-none
                     ">
 						<div className="flex items-center justify-between mb-6">
-							<h5 className="text-gray-900 text-2xl font-bold mt-0 mb-0">
-								Add Social Links.
+							<h5 className="text-gray-900 text-1xl  mt-0 mb-0">
+								Are you sure you want to delete you social card account?
 							</h5>
-							<button
-								onClick={(e) => {
-									e.preventDefault();
-									setOpen(false);
-								}}
-								className="
-                                    p-1
-                                    bg-transparent
-                                    absolute
-                                    top-2
-                                    right-4
-                                    text-gray-900 text-3xl
-                                    leading-none
-                                    outline-none
-                                    focus:outline-none
-                                ">
-								<span className="text-gray-900 text-3xl block">×</span>
-							</button>
 						</div>
-						<div className="relative flex-auto mb-6">
-							<div
-								className="
-                                    flex flex-col
-                                    text-base
-                                    leading-relaxed
-                                    text-gray-600
-                                    font-normal
-                                ">
-								<input
-									onChange={(e) => {
-										setUrl(e.target.value);
-									}}
-									className="
-                                    w-96
-                                    outline-none
-                                    border
-                                    max-w-full
-                                    border-gray-500
-                                    rounded-md
-                                    h-8
-                                    "
-									type="text"
-									placeholder="Link URL"
-								/>
-								<select
-									onChange={(e) => {
-										setSocialNetwork(e.target.value);
-									}}
-									value={socialNetwork}
-									className="outline-none border border-gray-500 h-8 rounded-md mt-5">
-									{leftoverSocialNetworks.map((socialNetworkName) => (
-										<option key={socialNetworkName} value={socialNetworkName}>
-											{socialNetworkName}
-										</option>
-									))}
-								</select>
-							</div>
-						</div>
+
 						<div className="flex items-center justify-end gap-4">
 							<button
 								onClick={(e) => {
@@ -165,21 +115,9 @@ export default function ModalLink({ socialLinks, addSocialLink }) {
                                 bg-transparent
                                 font-pop
                             ">
-								Close
+								Cancel
 							</button>
 							<button
-								onClick={(e) => {
-									e.preventDefault();
-									setOpen(false);
-									if (socialNetwork !== '' && url !== '') {
-										addSocialLink(socialNetwork, url);
-										leftoverSocialNetworks = leftoverSocialNetworks.filter(
-											(socialNetworkName) =>
-												socialNetworkName !== socialNetwork,
-										);
-										setSocialNetwork(leftoverSocialNetworks[0]);
-									}
-								}}
 								className="
                                 false
                                 flex
@@ -206,8 +144,29 @@ export default function ModalLink({ socialLinks, addSocialLink }) {
                                 shadow-md-green
                                 hover:shadow-lg-green
                                 font-pop
-                            ">
-								Add Link
+                            "
+								onClick={async (e) => {
+									e.preventDefault();
+									setOpen(false);
+									const result = await deleteUser();
+									if (result.message === 'success') {
+										await logOut();
+										setUser({
+											username: '',
+											email: '',
+										});
+										setCard({
+											fullName: '',
+											jobTitle: '',
+											bio: '',
+											socialLinks: [],
+											profileImageUrl: '',
+										});
+										history.push('/');
+										alert('Your SocialCard account has been deleted');
+									}
+								}}>
+								Confirm
 							</button>
 						</div>
 					</div>
