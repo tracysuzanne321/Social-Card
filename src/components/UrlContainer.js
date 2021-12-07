@@ -1,4 +1,3 @@
-import { AiOutlineCopy } from 'react-icons/ai';
 import URLModal from './urlmodal';
 
 export const UrlContainer = ({ username }) => {
