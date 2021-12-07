@@ -27,7 +27,7 @@ const UserCard = ({
 								target="_blank"
 								rel="noreferrer">
 								<img
-									className="mr-2 w-12 h-12 "
+									className="mr-2 w-12 h-12 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ... fill-current "
 									src={getSocialNetworkImage(link.socialNetwork)}
 									alt=""
 								/>
