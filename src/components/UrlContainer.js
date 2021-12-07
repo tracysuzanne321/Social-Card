@@ -12,9 +12,7 @@ export const UrlContainer = ({ username }) => {
 					className="flex"
 					title="Copy your card to clipboard"
 					alt="Copy to clipboard"
-					onClick={() => {
-						navigator.clipboard.writeText(fullUrl);
-					}}></URLModal>
+					url={fullUrl}></URLModal>
 			</div>
 		</div>
 	);

@@ -76,7 +76,11 @@ export const updateUser = async (username, email, password) => {
 			password: password,
 		}),
 	});
+
 	const data = await response.json();
+	if (response.status === 500) {
+		throw new Error(data.message);
+	}
 	return {
 		username: data.result.username,
 		email: data.result.email,

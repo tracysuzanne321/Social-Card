@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineCopy } from 'react-icons/ai';
 import urlVideo from '../images/video.mp4';
 
-export default function URLModal() {
+export default function URLModal({ url }) {
 	const [open, setOpen] = useState(false);
 
 	return (
@@ -11,7 +11,10 @@ export default function URLModal() {
 				className="cursor-pointer ml-1.5 h-7 w-7 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ... fill-current text-gray"
 				color="black"
 				type="button"
-				onClick={(e) => setOpen(true)}
+				onClick={(e) => {
+					navigator.clipboard.writeText(url);
+					setOpen(true);
+				}}
 				ripple="light"></AiOutlineCopy>
 			<div
 				className={`
