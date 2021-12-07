@@ -1,4 +1,5 @@
 import { AiOutlineCopy } from 'react-icons/ai';
+import URLModal from './urlmodal';
 
 export const UrlContainer = ({ username }) => {
 	const fullUrl = window.location.href;
@@ -8,16 +9,13 @@ export const UrlContainer = ({ username }) => {
 			{urlPrefix}
 			<div className="text-green-500">{username}</div>
 			<div>
-				<button
+				<URLModal
 					className="flex"
 					title="Copy your card to clipboard"
 					alt="Copy to clipboard"
 					onClick={() => {
-						alert('URL Copied to Clipboard');
 						navigator.clipboard.writeText(fullUrl);
-					}}>
-					<AiOutlineCopy className="cursor-pointer ml-1.5 h-7 w-7 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ... fill-current text-gray" />
-				</button>
+					}}></URLModal>
 			</div>
 		</div>
 	);
