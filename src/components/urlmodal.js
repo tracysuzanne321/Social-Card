@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineCopy } from 'react-icons/ai';
+import urlVideo from '../images/video.mp4';
 
 export default function URLModal() {
 	const [open, setOpen] = useState(false);
@@ -51,13 +52,24 @@ export default function URLModal() {
                         bg-white
                         outline-none
                         focus:outline-none
+                        max-w-sm
                     ">
-						<div className="flex flex-col items-center justify-between mb-6">
+						<div className="flex flex-col items-center justify-between mb-6 ">
 							<div className="text-gray-900 text-2xl text-bold  mt-4 mb-2">
 								Share with your friends!
 							</div>
 							<div className="text-gray-900 text-lg mt-0 mb-0">
 								Your unique SocialCard URL has been copied to your clipboard.
+							</div>
+							<div>
+								<video
+									className="mt-8 rounded-2xl"
+									autostart
+									muted
+									autoPlay
+									loop
+									src={urlVideo}
+								/>
 							</div>
 						</div>
 

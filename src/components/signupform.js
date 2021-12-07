@@ -35,7 +35,6 @@ export const SignUpForm = () => {
 			/>
 			<input
 				id="username"
-				autoFocus={true}
 				autoComplete="on"
 				className="border mb-2 px-1 py-1.5 rounded outline-none"
 				placeholder="Username"
