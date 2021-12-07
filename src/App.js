@@ -11,6 +11,7 @@ import UserProfile from './pages/userprofile';
 import Navbar from './components/nav';
 import Footer from './components/footer';
 import Account from './pages/account';
+import Password from './pages/password';
 
 function App() {
 	const [user, setUser] = useState({
@@ -61,6 +62,9 @@ function App() {
 						</Route>
 						<Route path="/account">
 							<Account />
+						</Route>
+						<Route path="/password">
+							<Password />
 						</Route>
 						<Route path="/">
 							<Home />

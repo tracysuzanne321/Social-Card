@@ -54,7 +54,7 @@ export const LogInForm = () => {
 				</a>
 			</div>
 			<div className="font-light text-center text-gray-400">
-				<a className="underline" href="./useradmin">
+				<a className="underline" href="./password">
 					Forgotten Password
 				</a>
 			</div>
