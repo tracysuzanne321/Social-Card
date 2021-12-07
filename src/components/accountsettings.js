@@ -9,8 +9,8 @@ const AccountSettings = () => {
 	const [email, setEmail] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [valid, setValid] = useState(true);
 	const [message, setMessage] = useState(null);
+	const [errorMessage, setErrorMessage] = useState(null);
 
 	return (
 		<>
@@ -22,11 +22,12 @@ const AccountSettings = () => {
 						const userData = await updateUser(username, email, password);
 						setUser(userData);
 						setMessage('Updated user details.');
+						setErrorMessage(null);
 						setUsername('');
 						setPassword('');
 						setEmail('');
 					} catch (e) {
-						setValid(false);
+						setErrorMessage(e.message);
 					}
 				}}>
 				<input
@@ -41,7 +42,6 @@ const AccountSettings = () => {
 				/>
 				<input
 					id="username"
-					autoFocus={true}
 					autoComplete="on"
 					className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 					placeholder="Update Username"
@@ -57,10 +57,8 @@ const AccountSettings = () => {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				{!valid && (
-					<div className="mb-2 text-red-600 text-sm">
-						Invalid username, email or password!
-					</div>
+				{errorMessage && (
+					<div className="mb-2 text-red-600 text-sm">{errorMessage}</div>
 				)}
 				{message && <div className="mb-2  text-sm">{message}</div>}
 				<button
