@@ -16,7 +16,7 @@ const UserCard = ({
 					alt=""
 				/>
 				<div className="md:w-2/3 flex-col flex-wrap px-4">
-					<p className="mb-2 text-4xl mt-6">{fullName}</p>
+					<p className="mb-2 text-3xl mt-6">{fullName}</p>
 					<p className="mb-2 text-2xl">{jobTitle}</p>
 					<p className="mb-4 text-body">{bio}</p>
 					<div className="flex flex-row mb-4 ">
