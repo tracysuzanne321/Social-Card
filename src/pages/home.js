@@ -26,7 +26,7 @@ const Home = () => {
 					) : (
 						<Link
 							to={`/u/${user.username}`}
-							className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white  md:mt-4">
+							className="block bg-green-500 hover:bg-green-600 max-w-max mt-8 px-12 py-3 rounded-md text-white  md:mt-4">
 							My Card
 						</Link>
 					)}
@@ -37,7 +37,7 @@ const Home = () => {
 					profileImageUrl={mainimg}
 					fullName="Danny Baily"
 					jobTitle="Software Engineer"
-					bio={`Engineer with over 3+ years experience working within the finance domain. Proficient in design, analysis, development and testing of User Interface frameworks. 
+					bio={`Engineer with over 10+ years experience working within the finance domain. Proficient in design, analysis, development and testing of User Interface frameworks. 
 					Experience of implemented scalable applications.`}
 					socialLinks={[
 						{

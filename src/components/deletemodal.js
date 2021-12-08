@@ -7,7 +7,7 @@ export default function DeleteModal() {
 	return (
 		<>
 			<button
-				className="bg-green-500 hover:bg-green-600 p-1.5 rounded text-white  w-full mt-20 py-3 cursor-pointer "
+				className="bg-green-500 hover:bg-green-600 p-1.5 rounded text-white  w-full mt-4 py-3 cursor-pointer "
 				color="black"
 				type="button"
 				onClick={(e) => setOpen(true)}

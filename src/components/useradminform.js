@@ -66,7 +66,6 @@ const UserAdminForm = () => {
 	return (
 		<div className="flex justify-center w-full">
 			<div className="flex-1 flex flex-col items-center max-w-xl">
-				<div className="text-center text-4xl mb-8 mt-4">Edit Profile.</div>
 				<div className="border box-content flex flex-col overflow-hidden rounded-3xl w-full">
 					<div className="flex">
 						<div className="w-1/3 flex flex-col items-center justify-center">
@@ -87,10 +86,10 @@ const UserAdminForm = () => {
 								/>
 							</button>
 						</div>
-						<form className="flex flex-col p-4 pt-10 w-2/3 ml-4">
+						<form className="flex flex-col p-4 pt-5 w-2/3 ml-4">
 							<input
 								id="fullName"
-								maxLength="50"
+								maxLength="40"
 								autoFocus={true}
 								autoComplete="on"
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
@@ -101,7 +100,7 @@ const UserAdminForm = () => {
 							/>
 							<input
 								id="jobTitle"
-								maxLength="50"
+								maxLength="40"
 								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
 								placeholder="Job Type"
 								type="text"
@@ -111,7 +110,7 @@ const UserAdminForm = () => {
 							<textarea
 								maxLength="250"
 								id="bio"
-								className="border border-solid mb-2 px-1 py-1.5 rounded outline-none resize-none"
+								className="border border-solid mb-2 px-1 pb-28 rounded outline-none resize-none"
 								placeholder="Bio"
 								type="text"
 								value={bio}

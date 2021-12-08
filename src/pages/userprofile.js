@@ -42,6 +42,11 @@ const UserProfile = () => {
 	};
 	return (
 		<>
+			{user?.username !== '' && (
+				<div className="text-center text-4xl mb-2">
+					Welcome to your SocialCard!
+				</div>
+			)}
 			<div className="flex flex-col items-center">
 				<UrlContainer username={username} />
 				{cardDetails ? (
