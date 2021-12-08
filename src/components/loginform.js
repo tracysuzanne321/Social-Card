@@ -26,16 +26,16 @@ export const LogInForm = () => {
 			<input
 				id="email"
 				autoFocus={true}
-				autoComplete="on"
+				autoComplete="off"
 				className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
-				placeholder="Email"
+				placeholder="Email*"
 				type="text"
 				onChange={(e) => setEmail(e.target.value)}
 			/>
 			<input
 				id="password"
 				className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
-				placeholder="Password"
+				placeholder="Password*"
 				type="password"
 				onChange={(e) => setPassword(e.target.value)}
 			/>

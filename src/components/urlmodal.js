@@ -11,6 +11,7 @@ export default function URLModal({ url }) {
 				className="cursor-pointer ml-1.5 h-7 w-7 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ... fill-current text-gray"
 				color="black"
 				type="button"
+				title="Copy your SocialCard to your clipboard"
 				onClick={(e) => {
 					navigator.clipboard.writeText(url);
 					setOpen(true);

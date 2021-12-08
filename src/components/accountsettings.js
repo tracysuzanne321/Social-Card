@@ -35,7 +35,7 @@ const AccountSettings = () => {
 					autoFocus={true}
 					autoComplete="on"
 					className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
-					placeholder="Update Email"
+					placeholder="Update Email*"
 					type="text"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
@@ -44,7 +44,7 @@ const AccountSettings = () => {
 					id="username"
 					autoComplete="on"
 					className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
-					placeholder="Update Username"
+					placeholder="Update Username*"
 					type="text"
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
@@ -52,7 +52,7 @@ const AccountSettings = () => {
 				<input
 					id="password"
 					className="border border-solid mb-2 px-1 py-1.5 rounded outline-none"
-					placeholder="Update Password"
+					placeholder="Update Password*"
 					type="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}

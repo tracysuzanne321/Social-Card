@@ -13,7 +13,7 @@ const SignUp = () => {
 			<div className="flex flex-col items-end justify-center md:mt-0 md:w-7/12 mt-8 pb-32 relative sm:pb-0">
 				<div className="absolute left-0 lg:pl-8 mt-8 px-4 sm:pr-0 sm:text-right sm:w-4/6 top-0">
 					<h1 className="font-bold leading-snug mb-10 text-4xl">
-						You provide the socials and we’ll do the rest!.
+						You provide the socials and we’ll do the rest!
 					</h1>
 					<h2>
 						Sign Up to create your own SocialCard and create a hub for
