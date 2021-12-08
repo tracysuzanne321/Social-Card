@@ -121,6 +121,7 @@ export default function ModalLink({ socialLinks, addSocialLink }) {
                                     rounded-md
                                     h-8
                                     "
+									value={url}
 									type="text"
 									placeholder="Link URL"
 								/>
@@ -171,12 +172,14 @@ export default function ModalLink({ socialLinks, addSocialLink }) {
 								onClick={(e) => {
 									e.preventDefault();
 									setOpen(false);
+
 									if (socialNetwork !== '' && url !== '') {
 										addSocialLink(socialNetwork, url);
 										leftoverSocialNetworks = leftoverSocialNetworks.filter(
 											(socialNetworkName) =>
 												socialNetworkName !== socialNetwork,
 										);
+										setUrl('');
 										setSocialNetwork(leftoverSocialNetworks[0]);
 									}
 								}}
