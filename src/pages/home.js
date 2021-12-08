@@ -25,9 +25,9 @@ const Home = () => {
 						</Link>
 					) : (
 						<Link
-							to={`/u/${user.username}`}
+							to="/useradmin"
 							className="block bg-green-500 hover:bg-green-600 max-w-max mt-8 px-12 py-3 rounded-md text-white  md:mt-4">
-							My Card
+							Edit SocialCard
 						</Link>
 					)}
 				</div>
