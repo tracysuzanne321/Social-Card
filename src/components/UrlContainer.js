@@ -7,7 +7,7 @@ export const UrlContainer = ({ username }) => {
 	const urlPrefix = fullUrl.split('/u/')[0] + '/u/';
 	const { user } = useContext(AppContext);
 	return (
-		<div className="flex items-center justify-center mb-8 mt-4 text-2xl text-center ">
+		<div className="flex items-center justify-center mb-8 mt-4 text-lg text-center ">
 			{user?.username !== '' && (
 				<div className="text-green-500 mr-2">Share your unique URL:</div>
 			)}
