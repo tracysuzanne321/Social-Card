@@ -8,9 +8,9 @@ const Home = () => {
 	const { user } = useContext(AppContext);
 	return (
 		<>
-			<div className="flex flex-col items-center lg:flex-row mx-10 mt-12 sm:mx-24 justify-around">
+			<div className="flex flex-col items-center lg:flex-row mx-10 mt-12 sm:mx-24 justify-around ">
 				<div className="flex-col lg:max-w-xs mb-6 text-left md:text-center lg:text-left">
-					<p className="font-extrabold leading-snug mb-6 text-5xl text-green-500">
+					<p className="font-extrabold leading-snug mb-6 text-5xl text-green-500 ">
 						Everything in one place.
 					</p>
 					<p>
@@ -33,6 +33,7 @@ const Home = () => {
 				</div>
 
 				<UserCard
+					animated={true}
 					profileImageUrl={mainimg}
 					fullName="Danny Baily"
 					jobTitle="Software Engineer"

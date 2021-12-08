@@ -59,7 +59,7 @@ export default function URLModal({ url }) {
                     ">
 						<div className="flex flex-col items-center justify-between mb-6 ">
 							<div className="text-gray-900 text-2xl text-bold  mt-4 mb-2">
-								Share with your friends!
+								Share with your contacts!
 							</div>
 							<div className="text-gray-900 text-lg mt-0 mb-0">
 								Your unique SocialCard URL has been copied to your clipboard.
