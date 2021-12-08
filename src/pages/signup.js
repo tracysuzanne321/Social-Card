@@ -5,7 +5,7 @@ const SignUp = () => {
 	return (
 		<div className="flex flex-col md:flex-row mt-12 w-full">
 			<div className="md:w-5/12">
-				<div className="bg-gray-100 drop-shadow-2xl font-medium m-4 mx-8 p-8 ml-20 pb-10 rounded-lg shadow-2xl">
+				<div className="bg-gray-100 drop-shadow-2xl font-medium m-4 mx-8 p-8 lg:ml-20 pb-10 rounded-lg shadow-2xl">
 					<h1 className="mb-4 text-xl font-medium">Sign Up.</h1>
 					<SignUpForm />
 				</div>

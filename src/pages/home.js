@@ -8,25 +8,25 @@ const Home = () => {
 	const { user } = useContext(AppContext);
 	return (
 		<>
-			<div className="flex flex-col items-center lg:flex-row mx-10 mt-12 sm:mx-24 justify-around ">
+			<div className="flex flex-col  lg:flex-row mx-10 mt-20 sm:mx-24 justify-around ">
 				<div className="flex-col lg:max-w-xs mb-6 text-left md:text-center lg:text-left">
 					<p className="font-extrabold leading-snug mb-6 text-5xl text-green-500 ">
 						Everything in one place.
 					</p>
-					<p>
+					<p className="mb-12">
 						One person, one link. SocialCard provides links to everything so
 						that you don't have to.
 					</p>
 					{user?.username === '' ? (
 						<Link
 							to="/signup"
-							className="block bg-green-500 hover:bg-green-600 max-w-max mt-7 px-12 py-3 rounded-md text-white md:mt-4">
+							className="block bg-green-500 hover:bg-green-600 max-w-max  px-12 py-3 rounded-md text-white md:mt-4">
 							Sign Up
 						</Link>
 					) : (
 						<Link
 							to="/useradmin"
-							className="block bg-green-500 hover:bg-green-600 max-w-max mt-8 px-12 py-3 rounded-md text-white  md:mt-4">
+							className="block bg-green-500 hover:bg-green-600 max-w-max  px-12 py-3 rounded-md text-white  md:mt-4">
 							Edit SocialCard
 						</Link>
 					)}

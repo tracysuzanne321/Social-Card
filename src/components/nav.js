@@ -126,7 +126,7 @@ const Navbar = () => {
 					<li className="ml-4 mt-1  ">
 						<NavLink
 							to={`/u/${user.username}`}
-							className=" hover:bg-green-500 hover:text-white  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ... px-7 py-2 rounded-lg border-green-500 border-2">
+							className=" hover:bg-green-500 hover:text-white  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ... lg:px-7 py-2 rounded-lg border-green-500 border-2">
 							My Card
 						</NavLink>
 					</li>
