@@ -7,7 +7,7 @@ export const SignUpForm = () => {
 	const [email, setEmail] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [valid, setValid] = useState(true);
+	const [message, setMessage] = useState(null);
 	const { setUser } = useContext(AppContext);
 	const history = useHistory();
 
@@ -21,7 +21,7 @@ export const SignUpForm = () => {
 					setUser(userData);
 					history.push('/useradmin');
 				} catch (e) {
-					setValid(false);
+					setMessage(e.message);
 				}
 			}}>
 			<input
@@ -48,11 +48,7 @@ export const SignUpForm = () => {
 				type="password"
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			{!valid && (
-				<div className="mb-2 text-red-600 text-sm">
-					Invalid username, email or password!
-				</div>
-			)}
+			{message && <div className="mb-2 text-red-600 text-sm">{message}</div>}
 			<button
 				type="submit"
 				className="bg-green-500 hover:bg-green-600 p-3 rounded text-white">

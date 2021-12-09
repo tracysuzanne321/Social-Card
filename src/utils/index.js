@@ -55,6 +55,9 @@ export const createUser = async (username, email, password) => {
 		}),
 	});
 	const data = await response.json();
+	if (response.status === 500) {
+		throw new Error(data.message);
+	}
 	localStorage.setItem('MyToken', data.token);
 	return {
 		username: data.newUser.username,
