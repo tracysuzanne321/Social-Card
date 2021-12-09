@@ -68,7 +68,7 @@ export default function URLModal({ url }) {
 							<div>
 								<video
 									className="mt-8 rounded-2xl"
-									autostart
+									autostart="true"
 									muted
 									autoPlay
 									loop

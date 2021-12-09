@@ -145,11 +145,7 @@ export const login = async (email, password) => {
 	if (data.token !== undefined) {
 		localStorage.setItem('MyToken', data.token);
 	}
-	return {
-		username: data.user.username,
-		email: data.user.email,
-		id: data.user._id,
-	};
+	return data.user;
 };
 
 export const logOut = async () => {

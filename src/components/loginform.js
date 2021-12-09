@@ -7,7 +7,7 @@ export const LogInForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [validationError, setValidationError] = useState(null);
-	const { setUser } = useContext(AppContext);
+	const { setUser, setCard } = useContext(AppContext);
 	const history = useHistory();
 
 	return (
@@ -17,7 +17,20 @@ export const LogInForm = () => {
 				e.preventDefault();
 				try {
 					const userData = await login(email, password);
-					setUser(userData);
+					const {
+						username: signedInUsername,
+						email: signedInEmail,
+						password: signedInPassword,
+						_id,
+						__v,
+						...cardDetails
+					} = userData;
+					console.log(cardDetails);
+					setUser({
+						username: signedInUsername,
+						email: signedInEmail,
+					});
+					setCard(cardDetails);
 					history.push(`/u/${userData.username}`);
 				} catch (e) {
 					setValidationError(e.message);

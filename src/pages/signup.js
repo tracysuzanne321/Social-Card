@@ -17,7 +17,7 @@ const SignUp = () => {
 					</h1>
 					<h2>
 						Sign Up to create your own SocialCard and create a hub for
-						everything you!.
+						everything you!
 					</h2>
 				</div>
 				<div>
