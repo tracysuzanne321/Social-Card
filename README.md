@@ -10,7 +10,7 @@
   <h3 align="center">Social Card Full Stack React App</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Find out more
     <br />
     <a href="https://github.com/tracysuzanne321/Social-Card"><strong>Explore the docs »</strong></a>
     <br />
